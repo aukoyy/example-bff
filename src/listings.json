@@ -1,0 +1,24 @@
+[
+	{
+		"id": 0,
+		"title": "string",
+		"caption": "string",
+		"size": "string",
+		"category": "string",
+		"askingPrice": 1000,
+		"currency": "NOK",
+		"owner": "Truls",
+		"sold": false
+	},
+	{
+		"id": 1,
+		"title": "second",
+		"caption": "string",
+		"size": "string",
+		"category": "string",
+		"askingPrice": 1000,
+		"currency": "NOK",
+		"owner": "Truls",
+		"sold": false
+	}
+]
