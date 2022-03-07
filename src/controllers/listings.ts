@@ -96,7 +96,6 @@ const likeListing = async (req: Request, res: Response) => {
 	const likedBy: string = req.body.likedBy;
 	// const { likedBy } = req.body
 
-	let likeList: string[] = ['empty'];
 	client.query(
 		`SELECT liked_by from tise."Listings" WHERE id=${id}`,
 		(err, pgres) => {
@@ -106,31 +105,30 @@ const likeListing = async (req: Request, res: Response) => {
 			} else {
 				const existingLikers = pgres.rows[0].liked_by;
 				console.log(existingLikers);
-				likeList = existingLikers;
+				const likeList = existingLikers.concat(likedBy);
 				console.log(likeList);
+				// return res.status(200).json({ likeList });
 
-				/* client.query(
-		`
-    UPDATE tise."Listings" 
-    SET liked_by = '{${likeList}}' 
-    WHERE id=${id}
-  `,
-		(err, pgres) => {
-			if (err) {
-				console.log(err);
-				return res.status(400).json({ message: 'Bad request' });
-			} else {
-				// const response = pgres;
+				client.query(
+					`
+            UPDATE tise."Listings" 
+            SET liked_by = '{${likeList}}' 
+            WHERE id=${id}
+          `,
+					(err, pgres) => {
+						if (err) {
+							console.log(err);
+							return res.status(400).json({ message: 'Bad request' });
+						} else {
+							// const response = pgres;
 
-				return res.status(204).json({ message: 'Updated' });
-			}
-		}
-	); */
+							return res.status(200).json({ likeList });
+						}
+					}
+				);
 			}
 		}
 	);
-
-	return res.status(200).json({ likeList });
 };
 
 // TODO: implement
