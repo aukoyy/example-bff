@@ -1,7 +1,6 @@
 import http from 'http';
 import express, { Express } from 'express';
 import routes from './routes/listings';
-import { Client, Pool } from 'pg';
 
 const router: Express = express();
 

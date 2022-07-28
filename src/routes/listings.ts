@@ -7,6 +7,6 @@ router.get('/listings', controller.getListings);
 router.post('/listings', controller.addListing);
 router.put('/listings/:id', controller.likeListing);
 
-router.get('/listings/search/:query', controller.searchListing);
+router.get('/listings/search/:searchQuery', controller.searchListing);
 
 export = router;
